@@ -1,0 +1,11 @@
+Nom;Niveau;Cycle;Mensuel;Frais_inscription;Effectif_max
+Jardin;jardin d'enfants;Primaire;5000;2000;50
+1ere;1ère année;Primaire;6000;3000;50
+2eme;2ème année;Primaire;6000;3000;50
+3eme;3ème année;Primaire;7000;3000;50
+4eme;4ème année;Primaire;7000;4000;50
+5eme;5ème année;Primaire;7500;4000;50
+6eme;6ème année;Second Cycle;10000;5000;50
+7eme;7ème année;Second Cycle;12500;5000;50
+8eme;8ème année;Second Cycle;14000;5000;50
+9eme;9ème année;Second Cycle;15000;5000;50

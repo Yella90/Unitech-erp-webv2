@@ -1,0 +1,314 @@
+/* ============================================
+   APPARITIONS PROGRESSIVES / FADE-IN
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInCascade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   TRANSITIONS DE CONTENU
+   ============================================ */
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* ============================================
+   INDICATEURS D'ACTION (PULSE, SHAKE)
+   ============================================ */
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-2px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes shakeWarn {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-3px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinBounce {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* ============================================
+   TRANSITION DE GRAPHIQUE (DESSIN)
+   ============================================ */
+
+@keyframes drawBars {
+  from {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0.7;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   UTILITAIRES TAILWIND PERSONNALISÉS
+   ============================================ */
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.4s ease-out forwards;
+}
+
+.animate-fadeInScale {
+  animation: fadeInScale 0.5s ease-out forwards;
+}
+
+.animate-fadeInCascade {
+  animation: fadeInCascade 0.5s ease-out forwards;
+}
+
+.animate-slideOutRight {
+  animation: slideOutRight 0.4s ease-in forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.4s ease-out forwards;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-in forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out forwards;
+}
+
+.animate-shakeWarn {
+  animation: shakeWarn 0.6s ease-in-out forwards;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-spinBounce {
+  animation: spinBounce 1.5s ease-in-out infinite;
+}
+
+.animate-drawBars {
+  animation: drawBars 0.5s ease-out forwards;
+}
+
+/* ============================================
+   ANIMATIONS EN CASCADE (DÉLAIS PROGRESSIFS)
+   ============================================ */
+
+.animate-cascade-1 {
+  animation: fadeInCascade 0.5s ease-out forwards;
+  animation-delay: 0s;
+}
+
+.animate-cascade-2 {
+  animation: fadeInCascade 0.5s ease-out forwards;
+  animation-delay: 0.05s;
+}
+
+.animate-cascade-3 {
+  animation: fadeInCascade 0.5s ease-out forwards;
+  animation-delay: 0.1s;
+}
+
+.animate-cascade-4 {
+  animation: fadeInCascade 0.5s ease-out forwards;
+  animation-delay: 0.15s;
+}
+
+.animate-cascade-5 {
+  animation: fadeInCascade 0.5s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.animate-cascade-6 {
+  animation: fadeInCascade 0.5s ease-out forwards;
+  animation-delay: 0.25s;
+}
+
+/* ============================================
+   ANIMATIONS COMPOSÉES
+   ============================================ */
+
+.loading-spinner {
+  border: 3px solid rgba(59, 130, 246, 0.1);
+  border-top: 3px solid rgb(59, 130, 246);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+.loading-spinner-lg {
+  border: 4px solid rgba(59, 130, 246, 0.1);
+  border-top: 4px solid rgb(59, 130, 246);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+.pulse-subtle {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  opacity: 0.8;
+}
+
+/* ============================================
+   TRANSITIONS DE FOND (SMOOTH CHANGES)
+   ============================================ */
+
+.transition-all-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-opacity-smooth {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-transform-smooth {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-colors-smooth {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
