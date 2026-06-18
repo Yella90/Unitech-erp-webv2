@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRightIcon, SparklesIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
 import { getDefaultRouteForRole } from '../utils/roles.js';
 import { setLoginPortal } from '../services/auth';
+import process from 'process';
 
-const backendUrl = 'http://localhost:5000';
+const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
 function Login() {
   const [email, setEmail] = useState('');
