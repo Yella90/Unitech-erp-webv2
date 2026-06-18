@@ -4,7 +4,7 @@ import { getDefaultRouteForRole } from '../utils/roles.js';
 import { clearStoredAuth, setLoginPortal } from '../services/auth';
 import process from 'process';
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+const backendUrl = process.env.VITE_API_URL || 'http://localhost:5000';
 
 function StaffLogin() {
   const [email, setEmail] = useState('');
