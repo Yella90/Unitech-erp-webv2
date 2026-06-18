@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { clearStoredAuth, getLoginRouteForCurrentPath } from './auth';
-import process from 'process';
+
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000',
+  baseURL: import.meta.env.VITE_API_URL|| 'http://localhost:5000',
 });
 
 api.interceptors.request.use(

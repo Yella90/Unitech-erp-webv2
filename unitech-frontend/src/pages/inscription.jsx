@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import process from 'process';
 
-const backendUrl = process.env.VITE_API_URL || 'http://localhost:5000';
+
+const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 function RegisterSchool() {
   const navigate = useNavigate();

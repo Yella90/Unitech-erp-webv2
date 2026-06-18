@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRightIcon, SparklesIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
 import { getDefaultRouteForRole } from '../utils/roles.js';
 import { setLoginPortal } from '../services/auth';
-import process from 'process';
 
-const backendUrl = process.env.VITE_API_URL || 'http://localhost:5000';
+const backendUrl = import.meta.env.VITE_API_URL| 'http://localhost:5000';
 
 function Login() {
   const [email, setEmail] = useState('');
