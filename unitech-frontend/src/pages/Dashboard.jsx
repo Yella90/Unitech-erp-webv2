@@ -303,8 +303,8 @@ function Dashboard() {
       try {
         const suffix = month ? `?month=${encodeURIComponent(month)}` : '';
         const response = await api.get(`/system/dashboard/summary${suffix}`);
-        console.log("API RESPONSE:", response);
-        console.log("DATA:", response.data);
+        //console.log("API RESPONSE:", response);
+        //console.log("DATA:", response.data);
         setSummary(response.data);
        
       } catch (err) {
