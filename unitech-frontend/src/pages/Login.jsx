@@ -5,6 +5,7 @@ import { getDefaultRouteForRole } from '../utils/roles.js';
 import { setLoginPortal } from '../services/auth';
 
 const backendUrl = import.meta.env.VITE_API_URL| 'http://localhost:5000';
+console.log("API URL =", import.meta.env.VITE_API_URL);
 
 function Login() {
   const [email, setEmail] = useState('');
