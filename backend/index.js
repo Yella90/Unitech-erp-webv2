@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, '../unitech-frontend/dist')));
 
 
 // Middleware de fallback pour le SPA (après les routes API et statiques)
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   if (req.path.startsWith('/api')) {
     return res.status(404).json({ message: 'API route not found' });
   }
