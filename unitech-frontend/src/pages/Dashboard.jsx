@@ -303,8 +303,10 @@ function Dashboard() {
       try {
         const suffix = month ? `?month=${encodeURIComponent(month)}` : '';
         const response = await api.get(`/system/dashboard/summary${suffix}`);
+        console.log("API RESPONSE:", response);
+        console.log("DATA:", response.data);
         setSummary(response.data);
-        console.log(summary);
+       
       } catch (err) {
         if (err.response?.status === 401) {
           localStorage.removeItem('token');
