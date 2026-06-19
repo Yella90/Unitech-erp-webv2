@@ -3,7 +3,7 @@ import { clearStoredAuth, getLoginRouteForCurrentPath } from './auth';
 
 
 const api = axios.create({
-  baseURL:"api/",
+  baseURL:"/api/",
 });
 
 api.interceptors.request.use(
