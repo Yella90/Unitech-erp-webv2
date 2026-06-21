@@ -1,4 +1,6 @@
 const db = require('../database/db');
+const resend = require('resend');
+const { sendEmail } = require('../services/mail');
 const {
   createStaffUserAccount,
   deleteStaffUserAccount,
@@ -228,7 +230,15 @@ exports.addpersonnel = async (req, res) => {
               matricule: payloadWithMatricule.matricule,
               role: resolvePersonnelRole(poste),
             });
-
+            const schoolName= await new Promise((resolve, reject) => {
+              db.get(`SELECT name FROM schools WHERE id = ?`, [schoolId], (err, row) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(row?.name || 'votre école');
+                }
+              })});
+            await sendEmail(normalizedEmail, nomComplet, schoolName, account.generatedPassword, account.role);
             return res.status(201).json({
               message: 'personnel ajoute avec succes',
               id: this.lastID,

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { requirePermissionByMethod } = require('../middleware/authMiddleware');
+
 const {
   addpersonnel,
   getpersonnel,

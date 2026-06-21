@@ -138,6 +138,8 @@ exports.addEleve = (req, res) => {
       payload.reste_a_payer = payload.reste_a_payer ?? Math.max(Number(payload.frais_total || fraisInscription) - Number(payload.montant_paye || fraisInscription), 0);
       payload.etat_paiement = payload.etat_paiement || (payload.reste_a_payer > 0 ? 'partiel' : 'paye');
       payload.dernier_paiement = payload.dernier_paiement || new Date().toISOString().slice(0, 10);
+      payload.ecole_actuelle_id = schoolId;
+      payload.statut ='actif';
 
       db.run(
         `INSERT INTO eleves (${eleveColumns.join(', ')}, ecole_actuelle_id)

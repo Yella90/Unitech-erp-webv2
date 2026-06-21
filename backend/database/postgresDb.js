@@ -149,8 +149,8 @@ function normalizeSql(sql = '') {
 async function execute(sql, params = []) {
   await ready;
   const normalizedSql = replaceQuestionMarks(normalizeSql(sql), params.length);
-  //console.log('🔍 SQL EXECUTED:', normalizedSql);
-  //console.log('📦 PARAMS:', params);
+  console.log('🔍 SQL EXECUTED:', normalizedSql);
+  console.log('📦 PARAMS:', params);
   const result = await rawQuery(normalizedSql, params);
   return result;
 }

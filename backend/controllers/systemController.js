@@ -4,6 +4,7 @@ const { normalizeRole, isSuperAdminRole } = require('../middleware/authMiddlewar
 const { computeStudentFinanceSummary } = require('../utils/financeCalculations');
 const { buildSubscriptionAccessStatus } = require('../utils/subscriptionAccess');
 const { computeInscriptionForecast } = require('../utils/inscriptionForecast');
+const { sendEmail } = require('../services/mail');
 
 
 function all(sql, params = []) {
@@ -4918,6 +4919,15 @@ exports.addUser = async (req, res) => {
        VALUES (?, ?, ?, ?, ?, ?, 1)`,
       [name, normalizedEmail, hashedPassword, normalizedRole, schoolId, phone || null]
     );
+    const schoolName= await new Promise((resolve, reject) => {
+                  db.get(`SELECT name FROM schools WHERE id = ?`, [schoolId], (err, row) => {
+                    if (err) {
+                      reject(err);
+                    } else {
+                      resolve(row?.name || 'votre école');
+                    }
+                  })});
+                await sendEmail(normalizedEmail, name, schoolName, hashedPassword, normalizedRole);
     res.status(201).json({ id: result.id });
   } catch (error) {
     console.error(error);

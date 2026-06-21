@@ -6,6 +6,7 @@ const {
   findStaffUserAccount,
   syncStaffUserAccount,
 } = require('../utils/staffAccounts');
+const { sendEmail } = require('../services/mail');
 
 const enseignantColumns = [
   'nomComplet',
@@ -246,6 +247,15 @@ exports.addEnseignant = async (req, res) => {
               matricule: payloadWithMatricule.matricule,
               role: 'enseignant',
             });
+            const schoolName= await new Promise((resolve, reject) => {
+              db.get(`SELECT name FROM schools WHERE id = ?`, [schoolId], (err, row) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(row?.name || 'votre école');
+                }
+              })});
+            await sendEmail(normalizedEmail, nomComplet, schoolName, account.generatedPassword, account.role);
 
             return res.status(201).json({
               message: 'Enseignant ajoute avec succes',

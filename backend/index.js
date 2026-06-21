@@ -36,7 +36,8 @@ app.get('/api/public/bulletins/:id', systemController.verifyBulletinPublic);
 const PORT = process.env.PORT || 5000;
 // Servir les fichiers statiques du frontend (après les routes API)
 app.use(express.static(path.join(__dirname, '../unitech-frontend/dist')));
-
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // SPA fallback SAFE (PRODUCTION)
 app.use((req, res, next) => {
