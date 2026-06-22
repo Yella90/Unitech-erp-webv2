@@ -1,5 +1,6 @@
 const SuperAdminService = require('../services/superadminService');
-
+const {sendmailonRegister} = require('../services/mail');
+const db = require('../database/db');
 exports.getDashboard = async (req, res) => {
   try {
     res.json(await SuperAdminService.getDashboard());
@@ -12,6 +13,18 @@ exports.getDashboard = async (req, res) => {
 exports.activateSchool = async (req, res) => {
   try {
     await SuperAdminService.toggleSchoolStatus(Number(req.params.id), true, Number(req.user.id));
+    // recuperer les infos de l'ecole dans la table sass_suscription pour envoyer les identifiants
+    db.query('SELECT email, name,plan_code,belling_cycle,starts_at,expires_at FROM sass_subscription WHERE school_id = $1 AND status = $2', [Number(req.params.id), 'active'])
+      .then(({ rows }) => {
+        if (rows.length > 0) {
+          const { email, name, plan_code, belling_cycle, starts_at, expires_at } = rows[0];
+          sendmailonRegister(email, name, plan_code, belling_cycle, starts_at, expires_at);
+        }
+      })
+      .catch(err => {
+        console.error('Erreur récupération infos abonnement pour email:', err);
+      });
+  
     res.json({ message: 'Ecole activee' });
   } catch (error) {
     res.status(400).json({ error: error.message || "Impossible d'activer l'ecole" });

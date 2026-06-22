@@ -143,9 +143,30 @@ UNITECH ERP - Solution de gestion scolaire
 
   return sendEmail({ to, subject, text, html });
 }
+/**
+ * fonction d'envoi d'email pour informer l'etablissement de l'activation de son abonnement
+ * @param {string} to - adresse email du destinataire
+ * @param {string} ecoleName - nom de l'ecole
+ * @param {string} duree - durée de l'abonnement (ex: "1 mois", "1 an")
+ * @param {string} finDate - date de fin de l'abonnement
+ */
+async function sendMailonRegister(to, ecoleName,duree,finDate) {
+  const subject = 'Unitech ERP - Abonnement activé';
+  const text = `
+Bonjour,  
+Nous sommes ravis de vous informer que l'abonnement de votre établissement "${ecoleName}" a été activé avec succès.
+Durée de l'abonnement : ${duree}
+Date de fin : ${finDate}
+Merci de faire confiance à Unitech ERP pour la gestion de votre établissement scolaire.
+--- 
+UNITECH ERP - Solution de gestion scolaire
+  `;
 
+  return sendEmail({ to, subject, text });
+}
 module.exports = {
   sendEmail,
   sendCredentials,
   sendSchoolAdminCredentials,
+  sendMailonRegister,
 };
