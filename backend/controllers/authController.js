@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../database/db');
 const { normalizeRole } = require('../middleware/authMiddleware');
-const { sendEmail ,sendMailonRegister } = require('../services/mail');
+const { sendEmail ,sendMailonRegister ,sendSchoolAdminCredentials} = require('../services/mail');
 
 
 function addAuthActivityLog(schoolId, actorUserId, action, details = {}) {
@@ -129,7 +129,7 @@ exports.registerSchool = (req, res) => {
                       if (subscriptionErr) {
                         console.error('Erreur creation abonnement initial:', subscriptionErr);
                       }
-                       sendMailonRegister(adminEmail, adminName, ecoleName, adminPassword, 'Promoteur');
+                       sendSchoolAdminCredentials(adminEmail, adminName, ecoleName, adminPassword, 'Directeur', null);
                       return res.status(201).json({ message: 'Compte cree avec succes' });
                     }
                   );

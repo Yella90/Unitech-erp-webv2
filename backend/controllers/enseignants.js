@@ -6,7 +6,7 @@ const {
   findStaffUserAccount,
   syncStaffUserAccount,
 } = require('../utils/staffAccounts');
-const { sendEmail } = require('../services/mail');
+const { sendEmail,sendCredentials } = require('../services/mail');
 
 const enseignantColumns = [
   'nomComplet',
@@ -255,7 +255,14 @@ exports.addEnseignant = async (req, res) => {
                   resolve(row?.name || 'votre école');
                 }
               })});
-            await sendEmail(normalizedEmail, nomComplet, schoolName, account.generatedPassword, account.role);
+            await sendCredentials({
+              to: normalizedEmail,
+              nom: nomComplet,
+              ecoleName: schoolName,
+              tempPassword: account.generatedPassword,
+              role: account.role,
+              matricule: payloadWithMatricule.matricule,
+            });
 
             return res.status(201).json({
               message: 'Enseignant ajoute avec succes',
